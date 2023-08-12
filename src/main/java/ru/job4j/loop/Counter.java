@@ -7,7 +7,7 @@ public class Counter {
             sum += i;
         }
         return sum;
-    }
+     }
 
     public static int sumByEven(int start, int finish) {
         int sum = 0;
