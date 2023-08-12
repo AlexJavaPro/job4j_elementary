@@ -20,5 +20,13 @@ public class ArrayDefinition {
         System.out.println(names[1]);
         System.out.println(names[2]);
         System.out.println(names[3]);
+
+        int[] numbers = new int[5];
+        for (int index = 0; index < numbers.length; index++) {
+            numbers[index] = index * 2 + 3;
+        }
+        for (int index = 0; index < numbers.length; index++) {
+            System.out.println(numbers[index]);
+        }
     }
 }
