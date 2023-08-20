@@ -48,4 +48,23 @@ class PointTest {
         double out = point1.distance(point2);
         assertThat(out).isEqualTo(expected, withPrecision(0.01));
     }
+
+    @Test
+    void when101512to202513then14dot17() {
+        double expected = 14.17;
+        Point point1 = new Point(10, 15, 12);
+        Point point2 = new Point(20, 25, 13);
+        double out = point1.distance3d(point2);
+        assertThat(out).isEqualTo(expected, withPrecision(0.01));
+    }
+
+    @Test
+    void when123to456then5dot19() {
+        double expected = 5.19;
+        Point point1 = new Point(1, 2, 3);
+        Point point2 = new Point(4, 5, 6);
+        double out = point1.distance3d(point2);
+        assertThat(out).isEqualTo(expected, withPrecision(0.01));
+    }
+
 }
