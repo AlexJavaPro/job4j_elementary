@@ -58,9 +58,6 @@ public class AnalyzeByMap {
     }
 
     public static Label bestStudent(List<Pupil> pupils) {
-        if (pupils.size() == 0) {
-            return new Label("Empty list", -1);
-        }
         List<Label> labelPupil = new ArrayList<>();
         for (Pupil pupil : pupils) {
             double score = 0;
