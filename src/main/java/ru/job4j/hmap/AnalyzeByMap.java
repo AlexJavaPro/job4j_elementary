@@ -65,24 +65,24 @@ public class AnalyzeByMap {
                 score += subject.score();
             }
             labelPupil.add(new Label(pupil.name(), score));
+            labelPupil.sort(Comparator.naturalOrder());
         }
-        return labelPupil.get(0);
+        return labelPupil.get(labelPupil.size() - 1);
     }
 
     public static Label bestSubject(List<Pupil> pupils) {
-        if (pupils.size() == 0) {
-            return new Label("Empty list", -1);
-        }
-        List<Label> subject = new ArrayList<>();
+        List<Label> list = new ArrayList<>();
         Map<String, Integer> map = new LinkedHashMap<>();
         for (Pupil pupil : pupils) {
-            for (Subject subject1 : pupil.subjects()) {
-                map.merge(subject1.name(), subject1.score(), Integer::sum);
+            for (Subject subject : pupil.subjects()) {
+                int temp = map.getOrDefault(subject.name(), 0);
+                map.put(subject.name(), subject.score() + temp);
             }
         }
-        for (Map.Entry<String, Integer> entry : map.entrySet()) {
-            subject.add(new Label(entry.getKey(), entry.getValue()));
+        for (Map.Entry<String, Integer> mapEntry : map.entrySet()) {
+            list.add(new Label(mapEntry.getKey(), mapEntry.getValue()));
+            list.sort(Comparator.naturalOrder());
         }
-        return subject.get(0);
+        return list.get(list.size() - 1);
     }
 }
