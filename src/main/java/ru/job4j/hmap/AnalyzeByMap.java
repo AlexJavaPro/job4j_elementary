@@ -84,5 +84,5 @@ public class AnalyzeByMap {
             list.sort(Comparator.naturalOrder());
         }
         return list.get(list.size() - 1);
-    }
+     }
 }
