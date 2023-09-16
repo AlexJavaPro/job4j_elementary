@@ -12,4 +12,4 @@ public class FunctionCalculator {
             }
             return list;
         }
-    }
+     }
