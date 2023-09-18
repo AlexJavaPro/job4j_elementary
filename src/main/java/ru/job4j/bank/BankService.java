@@ -22,7 +22,7 @@ public class BankService {
     /**
      *  Метод позволяет добавить пользователя в хранилище,
      *  если он не добавлен
-     * @param user - пользователь который добавляется в хранилище
+     * @param user - пользователь, который добавляется в хранилище
      */
     public void addUser(User user) {
         users.putIfAbsent(user, new ArrayList<Account>());
@@ -37,7 +37,7 @@ public class BankService {
     }
 
     /**
-     * Метод добаляет новый счёт по паспортным данным пользователя
+     * Метод добавляет новый счёт по паспортным данным пользователя
      * @param passport - данные паспорта пользователя
      * @param account - счёт для добавления
      */
@@ -54,14 +54,11 @@ public class BankService {
      * @return возвращает пользователя или null, если его нет в хранилище
      */
     public User findByPassport(String passport) {
-        User rsl = null;
-        for (User user : users.keySet()) {
-            if (passport.equals(user.getPassport())) {
-                rsl = user;
-                break;
-            }
-        }
-        return rsl;
+        return users.keySet()
+                .stream()
+                .filter(user -> passport.equals(user.getPassport()))
+                .findFirst()
+                .orElse(null);
     }
 
     /**
@@ -71,18 +68,15 @@ public class BankService {
      * @return возвращает счёт или null, если его нет в хранилище
      */
     public Account findByRequisite(String passport, String requisite) {
-        Account rsl = null;
         User user = findByPassport(passport);
-        if (user != null) {
-        List<Account> list = getAccounts(user);
-            for (Account account : list) {
-                if (requisite.equals(account.getRequisite())) {
-                    rsl = account;
-                    break;
-                }
-            }
+        if (Objects.nonNull(user)) {
+            return  getAccounts(user)
+                    .stream()
+                    .filter(account -> requisite.equals(account.getRequisite()))
+                    .findFirst()
+                    .orElse(null);
         }
-        return rsl;
+        return null;
     }
 
     /**
