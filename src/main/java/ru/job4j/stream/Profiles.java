@@ -11,7 +11,7 @@ public class Profiles {
                 .stream()
                 .map(Profile::getAddress)
                 .collect(Collectors.toList());
-    }
+     }
 
     public static List<Address> collectSortWithoutDuplicate(List<Profile> profiles) {
         return profiles
