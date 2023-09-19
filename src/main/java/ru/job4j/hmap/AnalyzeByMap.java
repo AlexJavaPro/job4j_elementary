@@ -6,7 +6,7 @@ public class AnalyzeByMap {
     public static double averageScore(List<Pupil> pupils) {
         double subj = 0;
         int count = 0;
-        if (pupils.size() > 0) {
+        if (!pupils.isEmpty()) {
             for (Pupil pupil : pupils) {
                 for (Subject subject : pupil.subjects()) {
                     subj += subject.score();
@@ -19,7 +19,7 @@ public class AnalyzeByMap {
 
     public static List<Label> averageScoreByPupil(List<Pupil> pupils) {
         List<Label> pupil = new ArrayList<>();
-        if (pupils.size() == 0) {
+        if (pupils.isEmpty()) {
             return pupil;
         }
         for (Pupil pupil1 : pupils) {
@@ -38,7 +38,7 @@ public class AnalyzeByMap {
 
     public static List<Label> averageScoreBySubject(List<Pupil> pupils) {
         List<Label> subject = new ArrayList<>();
-        if (pupils.size() == 0) {
+        if (pupils.isEmpty()) {
             return subject;
         }
         Map<String, Integer> map = new LinkedHashMap<>();
@@ -83,5 +83,5 @@ public class AnalyzeByMap {
         }
         list.sort(Comparator.naturalOrder());
         return list.get(list.size() - 1);
-     }
+    }
 }
